@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玄学运势查询</title>
+    <title>玄学运势查询与抽签</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -85,12 +85,36 @@
             height: auto;
             border-radius: 10px;
         }
+        .draw-lots {
+            margin-top: 30px;
+        }
+        .draw-lots input[type="button"] {
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .draw-lots input[type="button"]:hover {
+            background-color: #0069d9;
+        }
+        .draw-result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #00695c;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>运势查询</h1>
+    <h1>运势查询与抽签</h1>
     <div class="form-group">
         <label for="name">姓名：</label>
         <input type="text" id="name" placeholder="请输入您的姓名">
@@ -119,6 +143,10 @@
         <p>如果您觉得推算结果对您有帮助，欢迎打赏支持！</p>
         <img src="qrcode.png" alt="打赏二维码">
     </div>
+    <div class="draw-lots">
+        <input type="button" value="抽签决定谁洗碗" onclick="drawLots()">
+    </div>
+    <div class="draw-result" id="draw-result"></div>
 </div>
 
 <script>
@@ -155,6 +183,33 @@
         // 显示功德箱
         const donationBox = document.getElementById('donation-box');
         donationBox.style.display = 'block';
+    }
+
+    function drawLots() {
+        const drawResultDiv = document.getElementById('draw-result');
+
+        const storedDraw = localStorage.getItem("drawResult");
+        const storedTime = localStorage.getItem("drawTime");
+
+        const currentTime = new Date().getTime();
+
+        if (storedDraw && storedTime && (currentTime - storedTime < 120000)) {
+            // 如果2分钟内且有存储结果，显示存储的抽签结果
+            drawResultDiv.innerHTML = `抽签结果：${storedDraw}`;
+            drawResultDiv.style.display = 'block';
+        } else {
+            // 否则重新抽签
+            const drawOptions = ["男人洗碗", "女人洗碗"];
+            const randomIndex = Math.floor(Math.random() * drawOptions.length);
+            const drawResult = drawOptions[randomIndex];
+
+            // 保存结果和当前时间到localStorage
+            localStorage.setItem("drawResult", drawResult);
+            localStorage.setItem("drawTime", currentTime);
+
+            drawResultDiv.innerHTML = `抽签结果：${drawResult}`;
+            drawResultDiv.style.display = 'block';
+        }
     }
 </script>
 
