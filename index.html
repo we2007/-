@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人网页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        section {
+            padding: 20px;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 10px;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+            scroll-snap-align: start;
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>欢迎来到我的个人网页</h1>
+</header>
+
+<nav>
+    <a href="#about">个人介绍</a>
+    <a href="#contact">联系方式</a>
+    <a href="#portfolio">作品展示</a>
+    <a href="#social">社交媒体</a>
+    <a href="#payment">收款码</a>
+</nav>
+
+<section id="about">
+    <h2>个人介绍</h2>
+    <p>这里是你的个人介绍，可以描述你的职业背景、兴趣爱好等。</p>
+</section>
+
+<section id="contact">
+    <h2>联系方式</h2>
+    <p>可以在这里添加你的联系方式，比如邮箱或电话号码。</p>
+</section>
+
+<section id="portfolio">
+    <h2>作品展示</h2>
+    <div class="carousel">
+        <img src="image1.jpg" alt="作品1">
+        <img src="image2.png" alt="作品2" style="width:600px; height:auto;">
+        <img src="image3.jpg" alt="作品3">
+    </div>
+</section>
+
+<section id="social">
+    <h2>社交媒体</h2>
+    <p>在这里添加你的社交媒体链接，比如Twitter、LinkedIn等。</p>
+</section>
+
+<section id="payment">
+    <h2>收款码</h2>
+    <p>可以在这里展示你的收款码图片。</p>
+    <img src="payment-code.jpg" alt="收款码" style="width:200px; height:auto;">
+</section>
+
+<section id="form">
+    <h2>联系我</h2>
+    <form>
+        <div class="form-group">
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">邮箱:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">留言:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">提交</button>
+        </div>
+    </form>
+</section>
+
+<footer>
+    <p>© 2024 你的名字. 保留所有权利。</p>
+</footer>
+
+</body>
+</html>
