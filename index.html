@@ -3,151 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人网页</title>
+    <title>玄学运势查询</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        nav {
             display: flex;
             justify-content: center;
-            background-color: #333;
+            align-items: center;
+            height: 100vh;
         }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
             text-align: center;
         }
-        nav a:hover {
-            background-color: #575757;
-        }
-        section {
-            padding: 20px;
-        }
-        .carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 10px;
-        }
-        .carousel img {
-            width: 100%;
-            height: auto;
-            scroll-snap-align: start;
-            border-radius: 10px;
+        .container h1 {
+            text-align: center;
+            color: #333;
         }
         .form-group {
             margin-bottom: 15px;
         }
         .form-group label {
             display: block;
+            color: #555;
             margin-bottom: 5px;
         }
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
         }
-        .form-group button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+        .form-group input[type="button"] {
+            background-color: #4CAF50;
+            color: #fff;
             cursor: pointer;
+            border: none;
         }
-        .form-group button:hover {
-            background-color: #0056b3;
+        .form-group input[type="button"]:hover {
+            background-color: #45a049;
         }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
+        .result {
             margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            display: none;
+        }
+        .donation-box {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #fff4e5;
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+        }
+        .donation-box h2 {
+            color: #d4af37;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .donation-box p {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .donation-box img {
+            max-width: 150px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>欢迎来到我的个人网页</h1>
-</header>
-
-<nav>
-    <a href="#about">个人介绍</a>
-    <a href="#contact">联系方式</a>
-    <a href="#portfolio">作品展示</a>
-    <a href="#social">社交媒体</a>
-    <a href="#payment">收款码</a>
-</nav>
-
-<section id="about">
-    <h2>个人介绍</h2>
-    <p>这里是你的个人介绍，可以描述你的职业背景、兴趣爱好等。</p>
-</section>
-
-<section id="contact">
-    <h2>联系方式</h2>
-    <p>可以在这里添加你的联系方式，比如邮箱或电话号码。</p>
-</section>
-
-<section id="portfolio">
-    <h2>作品展示</h2>
-    <div class="carousel">
-        <img src="image1.jpg" alt="作品1">
-        <img src="image2.png" alt="作品2" style="width:600px; height:auto;">
-        <img src="image3.jpg" alt="作品3">
+<div class="container">
+    <h1>运势查询</h1>
+    <div class="form-group">
+        <label for="name">姓名：</label>
+        <input type="text" id="name" placeholder="请输入您的姓名">
     </div>
-</section>
+    <div class="form-group">
+        <label for="age">年龄：</label>
+        <input type="number" id="age" placeholder="请输入您的年龄">
+    </div>
+    <div class="form-group">
+        <label for="industry">行业：</label>
+        <select id="industry">
+            <option value="IT">IT</option>
+            <option value="金融">金融</option>
+            <option value="教育">教育</option>
+            <option value="医疗">医疗</option>
+            <option value="艺术">艺术</option>
+            <option value="其他">其他</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="button" value="推算运势" onclick="calculateLuck()">
+    </div>
+    <div class="result" id="result"></div>
+    <div class="donation-box" id="donation-box" style="display: none;">
+        <h2>功德箱</h2>
+        <p>如果您觉得推算结果对您有帮助，欢迎打赏支持！</p>
+        <img src="qrcode.png" alt="打赏二维码">
+    </div>
+</div>
 
-<section id="social">
-    <h2>社交媒体</h2>
-    <p>在这里添加你的社交媒体链接，比如Twitter、LinkedIn等。</p>
-</section>
+<script>
+    function calculateLuck() {
+        const name = document.getElementById('name').value;
+        const age = document.getElementById('age').value;
+        const industry = document.getElementById('industry').value;
 
-<section id="payment">
-    <h2>收款码</h2>
-    <p>可以在这里展示你的收款码图片。</p>
-    <img src="payment-code.jpg" alt="收款码" style="width:200px; height:auto;">
-</section>
+        if (!name || !age) {
+            alert('请填写所有信息！');
+            return;
+        }
 
-<section id="form">
-    <h2>联系我</h2>
-    <form>
-        <div class="form-group">
-            <label for="name">姓名:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="email">邮箱:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="message">留言:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
-        <div class="form-group">
-            <button type="submit">提交</button>
-        </div>
-    </form>
-</section>
+        const luckMessages = [
+            "今年是个好年头，事事顺利！",
+            "你可能会遇到一些挑战，但最终会克服。",
+            "财运不错，适合投资理财。",
+            "工作上可能会有些波折，需要多加小心。",
+            "感情生活可能会有新进展。",
+            "健康方面需要多注意，保持良好生活习惯。",
+            "今年适合学习新技能，提升自己。",
+            "人际关系将得到改善，贵人运强。",
+            "旅行能够带来好运，适合规划一次远行。",
+            "今年是个收获之年，努力会有回报。"
+        ];
 
-<footer>
-    <p>© 2024 你的名字. 保留所有权利。</p>
-</footer>
+        const randomIndex = Math.floor(Math.random() * luckMessages.length);
+        const luckMessage = luckMessages[randomIndex];
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `<strong>${name}</strong> (${age}岁, 从事${industry}行业)，${luckMessage}`;
+        resultDiv.style.display = 'block';
+
+        // 显示功德箱
+        const donationBox = document.getElementById('donation-box');
+        donationBox.style.display = 'block';
+    }
+</script>
 
 </body>
 </html>
